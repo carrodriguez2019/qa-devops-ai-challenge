@@ -1,0 +1,26 @@
+# Ignorar archivos de Node.js
+node_modules/
+npm-debug.log
+
+# Ignorar archivos de Python
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+
+# Ignorar archivos de Maven/Gradle (si aplica)
+target/
+build/
+
+# Ignorar archivos de logs
+*.log
+
+# Ignorar archivos de configuración local
+.env
+.DS_Store
+
+# Ignorar archivos de K6
+k6_results.json
+
+# Ignorar archivos de JMeter
+*.jtl
