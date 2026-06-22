@@ -1,21 +1,47 @@
 # Reto 5: DevOps, Calidad Avanzada e Inteligencia Artificial Aplicada en QA práctico
 
-## Objetivo del Proyecto
+## Objetivo del proyecto
 
-Construir un flujo completo de calidad para una aplicación web o API, aplicando buenas prácticas de control de versiones, automatización en CI/CD, quality gates, pruebas de performance, accesibilidad y análisis asistido con inteligencia artificial. El participante deberá crear un repositorio profesional en GitHub, automatizar validaciones con GitHub Actions, generar evidencias, analizar resultados y documentar hallazgos como parte de un portafolio QA.
+Construir un flujo completo de calidad para una aplicación web o API, aplicando
+buenas prácticas de control de versiones, automatización en CI/CD, quality
+gates, pruebas de performance, accesibilidad y análisis asistido con
+inteligencia artificial. El proyecto automatiza validaciones con GitHub Actions,
+genera evidencias y documenta los hallazgos como parte de un portafolio QA.
 
-## Herramientas Utilizadas
+## Herramientas utilizadas
 
-Este proyecto utilizará las siguientes herramientas y tecnologías:
+- **Control de versiones:** Git y GitHub.
+- **Integración continua:** GitHub Actions.
+- **Automatización de pruebas:** Python y `unittest`.
+- **Seguridad:** Gitleaks.
+- **Pruebas de performance:** K6 y Apache JMeter.
+- **Análisis de calidad:** Quality Gates.
+- **Inteligencia artificial:** herramientas de IA para documentación y análisis.
 
-*   **Control de Versiones:** Git, GitHub
-*   **Integración Continua:** GitHub Actions
-*   **Pruebas de Performance:** K6, Apache JMeter
-*   **Análisis de Calidad:** Quality Gates
-*   **Inteligencia Artificial:** Herramientas de IA para documentación y análisis.
+## Cómo ejecutar las pruebas
 
-## Cómo Ejecutar las Pruebas
+Se requiere Python 3.12 o una versión compatible. Desde la raíz del repositorio,
+ejecutar:
 
-Las pruebas automatizadas se ejecutarán como parte de un pipeline de integración continua configurado en GitHub Actions. Los detalles específicos sobre la ejecución de pruebas de performance con K6 y JMeter, así como las pruebas de sistemas de IA, se documentarán en las secciones correspondientes de este repositorio. Se espera que el pipeline de CI/CD valide la calidad antes de la integración de cambios a la rama principal.
+```bash
+python -m unittest discover -s tests -v
+```
 
-Para ejecutar las pruebas localmente (cuando sea aplicable), se proporcionarán instrucciones detalladas en los directorios específicos de cada tipo de prueba.
+El workflow de GitHub Actions ejecuta estas pruebas automáticamente en cada
+Pull Request dirigido a `main`, analiza secretos expuestos y publica el reporte
+como artefacto.
+
+## Quality Gates definidos
+
+Cada Pull Request hacia `main` debe cumplir los siguientes criterios:
+
+- El 100 % de las pruebas automatizadas debe pasar.
+- Gitleaks no debe detectar secretos expuestos.
+- El reporte de pruebas debe publicarse como artefacto del pipeline.
+- En las pruebas de performance, la tasa de errores debe ser menor al 1 %, el
+  tiempo promedio de respuesta menor a 500 ms y el percentil 95 menor a
+  1.000 ms. Estos umbrales se automatizarán al incorporar K6 en la parte 4.
+- El job consolidado `Quality Gate` debe finalizar correctamente.
+
+La definición completa, las evidencias esperadas y el procedimiento ante
+fallos se encuentran en [docs/test-plan.md](docs/test-plan.md).
