@@ -46,6 +46,19 @@ Esta prueba usa 5 usuarios virtuales durante 30 segundos y valida que el
 endpoint responda correctamente. La evidencia se documenta en
 [docs/performance-k6.md](docs/performance-k6.md).
 
+## Cómo ejecutar la prueba de performance con JMeter
+
+El escenario básico de JMeter está en `performance/jmeter/basic-api-test.jmx`.
+Para ejecutarlo en modo consola:
+
+```bash
+jmeter -n -t performance/jmeter/basic-api-test.jmx -l performance/jmeter/results/jmeter-results.jtl -e -o performance/jmeter/results/html-report
+```
+
+Esta prueba usa 5 usuarios virtuales, un ramp-up de 10 segundos y 3 iteraciones
+por usuario. La evidencia se documenta en
+[docs/performance-jmeter.md](docs/performance-jmeter.md).
+
 ## Quality Gates definidos
 
 Cada Pull Request hacia `main` debe cumplir los siguientes criterios:
@@ -56,6 +69,8 @@ Cada Pull Request hacia `main` debe cumplir los siguientes criterios:
 - En las pruebas de performance con K6, la tasa de errores debe ser menor al
   1 %, el tiempo promedio de respuesta menor a 500 ms y el percentil 95 menor a
   1000 ms.
+- En la prueba manual con JMeter, el endpoint debe responder con status `200` y
+  tiempo menor a 1000 ms.
 - El job consolidado `Quality Gate` debe finalizar correctamente.
 
 La definición completa, las evidencias esperadas y el procedimiento ante fallos
