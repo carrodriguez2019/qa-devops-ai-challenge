@@ -21,6 +21,7 @@ build/
 
 # Ignorar archivos de K6
 k6_results.json
+performance/k6/results/*.json
 
 # Ignorar archivos de JMeter
 *.jtl
