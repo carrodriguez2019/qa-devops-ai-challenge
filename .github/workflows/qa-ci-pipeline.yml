@@ -53,12 +53,41 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  performance-tests:
+    name: Performance tests with K6
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar K6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Ejecutar prueba de performance
+        uses: grafana/run-k6-action@v1
+        with:
+          path: |
+            ./performance/k6/api-load-test.js
+          flags: --summary-export performance/k6/results/k6-summary.json
+          fail-fast: true
+
+      - name: Publicar evidencia de performance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-performance-report
+          path: performance/k6/results/k6-summary.json
+          if-no-files-found: error
+          retention-days: 14
+
   quality-gate:
     name: Quality Gate
     if: always()
     needs:
       - automated-tests
       - secret-scan
+      - performance-tests
     runs-on: ubuntu-latest
 
     steps:
@@ -66,12 +95,14 @@ jobs:
         env:
           TEST_RESULT: ${{ needs.automated-tests.result }}
           SECRET_SCAN_RESULT: ${{ needs.secret-scan.result }}
+          PERFORMANCE_RESULT: ${{ needs.performance-tests.result }}
         shell: bash
         run: |
           echo "Pruebas automatizadas y evidencia: ${TEST_RESULT}"
           echo "Análisis de secretos: ${SECRET_SCAN_RESULT}"
+          echo "Pruebas de performance K6: ${PERFORMANCE_RESULT}"
 
-          if [[ "${TEST_RESULT}" != "success" || "${SECRET_SCAN_RESULT}" != "success" ]]; then
+          if [[ "${TEST_RESULT}" != "success" || "${SECRET_SCAN_RESULT}" != "success" || "${PERFORMANCE_RESULT}" != "success" ]]; then
             echo "::error::El Pull Request no cumple los Quality Gates."
             exit 1
           fi

@@ -5,8 +5,10 @@
 Construir un flujo completo de calidad para una aplicación web o API, aplicando
 buenas prácticas de control de versiones, automatización en CI/CD, quality
 gates, pruebas de performance, accesibilidad y análisis asistido con
-inteligencia artificial. El proyecto automatiza validaciones con GitHub Actions,
-genera evidencias y documenta los hallazgos como parte de un portafolio QA.
+inteligencia artificial.
+
+El proyecto automatiza validaciones con GitHub Actions, genera evidencias y
+documenta los hallazgos como parte de un portafolio QA.
 
 ## Herramientas utilizadas
 
@@ -18,7 +20,7 @@ genera evidencias y documenta los hallazgos como parte de un portafolio QA.
 - **Análisis de calidad:** Quality Gates.
 - **Inteligencia artificial:** herramientas de IA para documentación y análisis.
 
-## Cómo ejecutar las pruebas
+## Cómo ejecutar las pruebas automatizadas
 
 Se requiere Python 3.12 o una versión compatible. Desde la raíz del repositorio,
 ejecutar:
@@ -31,6 +33,19 @@ El workflow de GitHub Actions ejecuta estas pruebas automáticamente en cada
 Pull Request dirigido a `main`, analiza secretos expuestos y publica el reporte
 como artefacto.
 
+## Cómo ejecutar la prueba de performance con K6
+
+La prueba de performance está en `performance/k6/api-load-test.js`. Para
+ejecutarla localmente:
+
+```bash
+k6 run --summary-export performance/k6/results/k6-summary.json performance/k6/api-load-test.js
+```
+
+Esta prueba usa 5 usuarios virtuales durante 30 segundos y valida que el
+endpoint responda correctamente. La evidencia se documenta en
+[docs/performance-k6.md](docs/performance-k6.md).
+
 ## Quality Gates definidos
 
 Cada Pull Request hacia `main` debe cumplir los siguientes criterios:
@@ -38,10 +53,10 @@ Cada Pull Request hacia `main` debe cumplir los siguientes criterios:
 - El 100 % de las pruebas automatizadas debe pasar.
 - Gitleaks no debe detectar secretos expuestos.
 - El reporte de pruebas debe publicarse como artefacto del pipeline.
-- En las pruebas de performance, la tasa de errores debe ser menor al 1 %, el
-  tiempo promedio de respuesta menor a 500 ms y el percentil 95 menor a
-  1.000 ms. Estos umbrales se automatizarán al incorporar K6 en la parte 4.
+- En las pruebas de performance con K6, la tasa de errores debe ser menor al
+  1 %, el tiempo promedio de respuesta menor a 500 ms y el percentil 95 menor a
+  1000 ms.
 - El job consolidado `Quality Gate` debe finalizar correctamente.
 
-La definición completa, las evidencias esperadas y el procedimiento ante
-fallos se encuentran en [docs/test-plan.md](docs/test-plan.md).
+La definición completa, las evidencias esperadas y el procedimiento ante fallos
+se encuentran en [docs/test-plan.md](docs/test-plan.md).
