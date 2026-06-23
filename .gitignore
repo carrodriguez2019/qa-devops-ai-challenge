@@ -25,3 +25,5 @@ performance/k6/results/*.json
 
 # Ignorar archivos de JMeter
 *.jtl
+performance/jmeter/results/*
+!performance/jmeter/results/.gitkeep
