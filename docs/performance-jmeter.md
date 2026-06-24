@@ -101,7 +101,7 @@ La prueba queda **rechazada** porque se encontró 1 error y el porcentaje de
 error fue de 2.22 %. Además, una respuesta tardó 1963 ms, superando el límite de
 1000 ms configurado en el escenario.
 
-Desde una mirada junior de QA, este resultado no significa que todo el sistema
-esté mal. Significa que se encontró una respuesta lenta puntual y se debe dejar
+Desde el análisis de QA, este resultado no significa que todo el sistema esté
+mal. Significa que se encontró una respuesta lenta puntual y se debe dejar
 registrada como hallazgo para revisar si fue un pico aislado, una redirección
 lenta o un comportamiento repetible del endpoint.

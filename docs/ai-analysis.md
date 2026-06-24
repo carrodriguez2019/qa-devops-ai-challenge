@@ -6,9 +6,8 @@ Simular la validación de un asistente virtual basado en IA para una tienda en
 línea. El objetivo es revisar si las respuestas generadas son útiles,
 coherentes, relevantes y si existe riesgo de alucinaciones.
 
-Este análisis está escrito desde una mirada junior de QA: no se busca demostrar
-que el modelo es perfecto, sino practicar cómo probar sus respuestas y cómo
-registrar hallazgos de forma ordenada.
+Este análisis no busca demostrar que el modelo es perfecto, sino validar sus
+respuestas y registrar hallazgos de forma ordenada.
 
 ## Escenario probado
 
@@ -88,3 +87,71 @@ respuesta podría interpretarse como una política oficial sin estar confirmada.
 Conclusión general: **aprobado con observaciones**. El asistente puede ser útil,
 pero necesita reglas más estrictas para respuestas relacionadas con políticas
 internas de la tienda.
+
+## Uso responsable de IA
+
+Para este reto se utilizó IA como apoyo al trabajo de QA, principalmente para
+organizar ideas, redactar documentación inicial y convertir resultados técnicos
+en conclusiones más claras.
+
+La IA no se tomó como una fuente final automática. Cada salida fue revisada y
+ajustada manualmente antes de dejarla en el repositorio.
+
+### Qué se generó con IA
+
+Se usó IA como apoyo para:
+
+- Proponer una estructura inicial para la matriz de pruebas del asistente
+  virtual.
+- Redactar casos de prueba relacionados con productos, envíos, devoluciones,
+  descuentos y especificaciones técnicas.
+- Ayudar a resumir resultados de performance de K6 y JMeter.
+- Mejorar la redacción de conclusiones y hallazgos.
+- Preparar textos explicativos para que la documentación fuera más clara.
+
+### Qué fue revisado manualmente
+
+Se revisaron manualmente estos puntos:
+
+- Que los casos de prueba cumplieran con lo solicitado en el reto.
+- Que las respuestas del asistente no inventaran precios, políticas o
+  características.
+- Que las métricas documentadas de K6 y JMeter coincidieran con los resultados
+  observados.
+- Que las conclusiones fueran coherentes con la evidencia.
+- Que los archivos modificados correspondieran a la parte del reto que se estaba
+  trabajando.
+
+### Qué ajustes se realizaron
+
+Después de revisar el contenido generado con apoyo de IA, se hicieron estos
+ajustes:
+
+- Se dejó el análisis en lenguaje sencillo y fácil de entender.
+- Se marcó el resultado de JMeter como **rechazado** porque hubo 1 error y una
+  respuesta superó el límite de 1000 ms.
+- Se evitó presentar resultados inventados cuando una herramienta no había sido
+  ejecutada todavía.
+- Se agregó una conclusión de **aprobado con observaciones** para el asistente
+  de IA, porque hubo un riesgo medio en el caso de devoluciones.
+- Se separó claramente la evidencia técnica de las recomendaciones de mejora.
+
+### Riesgos identificados al usar IA
+
+Al usar IA como apoyo, se identificaron estos riesgos:
+
+- La IA puede redactar respuestas que suenan correctas, pero no siempre están
+  respaldadas por evidencia.
+- Puede resumir métricas de forma incorrecta si no se comparan con la salida
+  real de las herramientas.
+- Puede generar documentación demasiado general si no se le da contexto del
+  proyecto.
+- Puede proponer conclusiones positivas aunque los datos indiquen un fallo.
+
+### Conclusión sobre el uso de IA
+
+La IA fue útil como apoyo para organizar, redactar y explicar el trabajo de QA.
+Sin embargo, la revisión humana fue necesaria para validar métricas, corregir
+conclusiones y asegurar que la documentación coincidiera con la evidencia real.
+
+Conclusión: **la IA ayuda, pero no reemplaza el criterio QA**.

@@ -81,3 +81,7 @@ se encuentran en [docs/test-plan.md](docs/test-plan.md).
 El proyecto incluye una matriz básica para validar respuestas generadas por un
 asistente virtual de una tienda en línea. El análisis se encuentra en
 [docs/ai-analysis.md](docs/ai-analysis.md).
+
+El mismo documento incluye una sección de uso responsable de IA, donde se
+describe qué contenido fue generado con apoyo de IA, qué fue revisado
+manualmente y qué ajustes se realizaron.
