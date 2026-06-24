@@ -75,3 +75,9 @@ Cada Pull Request hacia `main` debe cumplir los siguientes criterios:
 
 La definición completa, las evidencias esperadas y el procedimiento ante fallos
 se encuentran en [docs/test-plan.md](docs/test-plan.md).
+
+## Análisis de pruebas para IA
+
+El proyecto incluye una matriz básica para validar respuestas generadas por un
+asistente virtual de una tienda en línea. El análisis se encuentra en
+[docs/ai-analysis.md](docs/ai-analysis.md).
